@@ -42,6 +42,8 @@ Using lodash version 4.12.0
 ...
 ```
 
-Now, open `service1/index.js`, edit the output text, and save the file. The up.sh script should detect the file change, and that it only affects `service1`. It will send a signal to a wrapping process inside the container which will restart the Node service with the mounted code. Refresh the browser window and you should see the updated text.
+Now, open `service1/index.js`, edit the output text, and save the file. The up.sh script should detect the file change, and that it only affects `service1`. It will send a signal to a wrapping process inside the container which will quickly restart the Node service with the updated code. Refresh the browser window and you should see the updated text.
 
 Now, open and edit the text of `module1/index.js`. This change will trigger a restart of both `service1` and `service2` since it is in the Node dependency tree of both services.
+
+Finally, you can `ctrl+c` the up.sh script and start it again. This will quickly rebuild the service images with your updated code, but will not redo the `npm install` step since that is separated off and cached by Docker, and you haven't edited a package.json file.
