@@ -1,0 +1,9 @@
+service1:
+  command: /code/scripts/client/restarter.sh node index.js
+  volumes:
+    - ./:/code
+
+service2:
+  command: /code/scripts/client/restarter.sh node index.js
+  volumes:
+    - ./:/code

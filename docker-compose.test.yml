@@ -1,0 +1,15 @@
+module1.test:
+  image: module1.test
+  entrypoint: $DC_ENTRYPOINT_PRE /npm/mocha/bin/mocha
+  environment:
+    - NODE_ENV=test
+  volumes:
+    - ./:/code
+
+service1.test:
+  image: service1
+  entrypoint: $DC_ENTRYPOINT_PRE /npm/mocha/bin/mocha
+  environment:
+    - NODE_ENV=test
+  volumes:
+    - ./:/code
