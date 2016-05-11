@@ -6,15 +6,18 @@ const lodash = require('lodash');
 const module1 = require('module1');
 const app = express();
 
-app.get('/service1', function (req, res) {
-  res.write('Hello World from service 1\n');
+app.get('/hello', function (req, res) {
+  res.write('Hello World from service1\n');
   res.write('Using lodash version ' + lodash.VERSION + '\n');
-  res.end(module1());
-});
 
-app.get('/service2', function (req, res) {
+  res.write('\nCalling module1 from service1\n');
+  res.write(module1());
+
+  res.write('\nCalling service2 from service1\n');
   const addr = process.env.SERVICE2_PORT_3000_TCP_ADDR + ':' + process.env.SERVICE2_PORT_3000_TCP_PORT;
-  request('http://' + addr).pipe(res);
+  request('http://' + addr + '/hello', function (err, response, body) {
+    res.end(body);
+  });
 });
 
 app.listen(process.env.PORT, function () {
