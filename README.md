@@ -1,4 +1,4 @@
-# docker-node-workflow
+# docker-node-setup
 ## What
 This repo contains a sample Node application and support scripts for a nice Docker-based development setup. The sample application consists of 2 Node services, both of which depend on a 3rd local Node module.
 
